@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{% static 'assets/css/default.css' %}" rel="stylesheet" />
+</head>
+<body>
+
+<div class="header">
+    <h1>Current Shipping Date</h1>
+    <h1>{{ data.shippingDate }}</h1>
+    <h3>Wait time is currently {{ data.waitInDays }} days</h3>
+</div>
+
+
+
+</body>
+</html>
