@@ -20,7 +20,10 @@ Including another URLconf
 
 from django.urls import path
 from . import views
+from .views import DateHistoryListView
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('date_history', DateHistoryListView.as_view()),
+    path('line_graph/', views.line_graph, name='line_graph'),
 ]

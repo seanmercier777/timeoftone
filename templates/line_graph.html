@@ -1,0 +1,45 @@
+{% block content %}
+<div>
+  <canvas id="myChart"></canvas>
+</div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+
+    var list = "{{ list_query|safe }}";
+    list2 = []
+
+    for (history in list){
+        list2.push(history.shippingDate)
+    }
+
+
+    //const labels = [ '{{ data.shippingDate }}']
+    const labels = {{ table_labels|safe }}
+
+    const data = {
+      labels: labels,
+      datasets: [{
+        label: 'King of Tone Wait Time in Days',
+        backgroundColor: 'rgb(150,102,224)',
+        borderColor: 'rgb(150,102,224)',
+        //data: [0, 10, 5, 2, 20, 30, 45],
+          data: {{ table_data|safe }},
+      }]
+    };
+
+    const config = {
+      type: 'line',
+      data,
+      options: {}
+    };
+
+  var myChart = new Chart(
+    document.getElementById('myChart'),
+    config
+  );
+
+
+    </script>
+{% endblock %}

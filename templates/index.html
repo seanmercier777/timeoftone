@@ -5,18 +5,129 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link href="{% static 'assets/css/default.css' %}" rel="stylesheet" />
+    <title>Time of Tone</title>
+    <link href="{% static 'assets/css/default.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Time of Tone</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Data</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
-<div class="header">
-    <h1>Current Shipping Date</h1>
-    <h1>{{ data.shippingDate }}</h1>
-    <h3>Wait time is currently {{ data.waitInDays }} days</h3>
-</div>
+    <div class="jumbotron text-center">
+        <h1 >Current Shipping Date</h1>
+        <h2><b>{{ data.shippingDate }}</b></h2>
+        <h3>Wait time is currently {{ data.waitInDays }} days</h3>
+        <p>Updated Daily!!</p>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-8">
+{#          <h3 class="text-center">Wait Chart</h3>#}
+            {% include 'line_graph.html' %}
+        </div>
+        <div class="col-lg-4">
+          <h2 class="text-center">Date List</h2>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>As of Date</th>
+                <th>Shipping Date</th>
+                <th class="text-center">Waiting Period</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for history in query_results %}
+                <tr>
+                    <td>{{ history.asOfDate }}</td>
+                    <td>{{ history.shippingDate }}</td>
+                    <td class="text-center">{{ history.waitInDays }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-container">
+{#        {% include 'date_history.html' %}#}
+{#        {% render_table object_list %}#}
+
+    </div>
 
 
+
+    <div class="jumbotron text-center">
+        <h1>What are some alternatives?</h1>
+        <p>That Pedal Show Reccomendations</p>
+    </div>
+
+    <style>
+        .logo {
+          color: mediumpurple;
+          font-size: 200px;
+        }
+        @media screen and (max-width: 768px) {
+          .col-sm-4 {
+            text-align: center;
+            margin: 25px 0;
+          }
+        }
+        .jumbotron {
+          background-color: mediumpurple;
+          color: #fff;
+        }
+
+        .container-fluid {
+          {#padding: 60px 50px;#}
+        }
+    </style>
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>Amp Eleven</h2>
+          <h4 style="padding-left: 15px">by Love Pedals</h4>
+            <a href="http://www.lovepedal.com/pedals/amp-eleven/"><button class="btn btn-default btn-lg">Link to store</button></a>
+        </div>
+        <div class="col-md-4">
+          <span class="glyphicon glyphicon-signal logo"></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="container bg-grey">
+      <div class="row">
+        <div class="col-md-4">
+          <span class="glyphicon glyphicon-globe logo"></span>
+        </div>
+        <div class="col-md-8">
+          <h2>Our Values</h2>
+          <h4><strong>MISSION:</strong> Our mission lorem ipsum..</h4>
+          <p><strong>VISION:</strong> Our vision Lorem ipsum..</p>
+        </div>
+      </div>
+    </div>
 
 </body>
 </html>
